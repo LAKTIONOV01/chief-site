@@ -1,9 +1,14 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Post
 
 
 # Create your views here.
+
+class HomeView(ListView):
+    model = Post
+    paginate_by = 7
+    template_name = 'blog/home.html'
 
 class PostListView(ListView):
     model = Post
@@ -13,5 +18,12 @@ class PostListView(ListView):
         return Post.objects.filter(category__slug=self.kwargs.get('slug'))
 
 
-def home(request):
-    return render(request, 'base.html')
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/post_detail.html'
+    context_object_name = 'post'
+    slug_url_kwarg = 'post_slug'
+
+
+
+

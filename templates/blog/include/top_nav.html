@@ -1,0 +1,12 @@
+{% load menu_tags %}
+<nav class="header__menu">
+    <ul>
+        <li class="active"><a href="{% url 'home:main' %}">Home</a></li>
+        {% get_last_posts %}
+        <li><a href="#">Dinner</a></li>
+        <li><a href="#">Desserts</a></li>
+        {% get_categories %}
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./contact.html">Contact</a></li>
+    </ul>
+</nav>
