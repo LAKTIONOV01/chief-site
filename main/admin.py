@@ -1,13 +1,15 @@
 from django.contrib import admin
 from .models import *
 from mptt.admin import MPTTModelAdmin
-# Register your models here.
 
+
+# Register your models here.
 
 
 class RecipeInline(admin.StackedInline):
     model = Recipe
     extra = 1
+
 
 @admin.register(Categories)
 class CategoriesAdmin(MPTTModelAdmin):
@@ -26,8 +28,9 @@ class PostAdmin(admin.ModelAdmin):
     inlines = [RecipeInline]
 
 
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'email', 'message']
 
 
-
-admin.site.register(Comment)
 admin.site.register(Tag)
